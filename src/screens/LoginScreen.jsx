@@ -16,8 +16,10 @@ export const LoginScreen = () => {
     })
 
     const submitPress = async (data) => {
-        const { Email, Password } = data
-        await SignWithEmail(Email, Password)
+
+        const email = data?.Email
+        const password = data?.Password
+        await SignWithEmail(email, password)
 
     }
     return (
