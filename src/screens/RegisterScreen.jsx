@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { DatePicker, Button, Alert } from 'antd'
 import dayjs from 'dayjs';
 import { useRegister } from '../hooks/useRegister'
-import { Timestamp, serverTimestamp } from 'firebase/firestore'
+import { Timestamp } from 'firebase/firestore'
 
 
 export const RegisterScreen = () => {

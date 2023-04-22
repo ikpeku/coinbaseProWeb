@@ -45,7 +45,7 @@ export const Withdraw = () => {
                 Address: data?.Address
     
               },
-              transactions: [ { type: "Withdraw", amount: data?.Amount, status: false, name: selectedCoin?.name, time: timeNow, id: uuidv4() }, ...transaction]
+              transactions: [ { type: "Withdraw", amount: data?.Amount, status: false, name: selectedCoin?.name, time: timeNow, id: uuidv4(), Address: data?.Address }, ...transaction]
     
     
             })
