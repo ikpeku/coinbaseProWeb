@@ -92,7 +92,7 @@ export const Deposit = () => {
 
             <h2 className='font-bold text-lg text-blue-950 pb-6'>Deposit {selectedCoin?.title}</h2>
             <div className='flex flex-col justify-center items-center'>
-                <QRCode value={selectedCoin?.address} />
+                {selectedCoin?.address && <QRCode value={selectedCoin?.address} />}
                 <p className='text-xs'>{selectedCoin?.address}</p>
             </div>
 

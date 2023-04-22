@@ -6,8 +6,6 @@ import { UserContext } from '../context/UserContext'
 const TransactionScreen = () => {
     const { transactionType } = useContext(UserContext)
 
-    console.log("get", transactionType)
-
     return (
         <div>
             {transactionType === "deposit" ? <Deposit />

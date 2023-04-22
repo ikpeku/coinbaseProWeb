@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom'
 import { DatePicker, Button, Alert } from 'antd'
 import dayjs from 'dayjs';
 import { useRegister } from '../hooks/useRegister'
+import { Timestamp, serverTimestamp } from 'firebase/firestore'
 
 
 export const RegisterScreen = () => {
     const { CreateWithEmail, error, isLoading } = useRegister()
-    const [DOB, setDOB] = useState(new Date())
+    const [DOB, setDOB] = useState('2015/01/01')
     const dateFormat = 'YYYY/MM/DD';
     const onChange = (date, dateString) => {
         // console.log(dateString);
@@ -29,16 +30,21 @@ export const RegisterScreen = () => {
         }
     })
 
-
+    // console.log(serverTimestamp(DOB))
+    // console.log(DOB)
+    // console.log("NEW DATE", new Date(DOB))
+    // console.log(Timestamp.fromDate(new Date(DOB)))
     const password = watch("Password")
 
     const submitPress = async (data) => {
 
 
+
+
         const email = data.Email
         const password = data.Password
         const fullName = `${data.First_Name} ${data.Last_Name}`
-        const date = DOB
+        const date = Timestamp.fromDate(new Date(DOB))
 
         await CreateWithEmail(email, password, fullName, date)
 

@@ -44,8 +44,7 @@ export const Home = () => {
         getItem('Home', '1', <HomeOutlined />),
         getItem('User', '2', <UserOutlined />),
         getItem('Contact Us', '3', <UserOutlined />, [
-            getItem('+3303345786', '4', <UserOutlined />),
-            getItem('contact@coinbasepro.tradegurultd.com', '5', <UserOutlined />)
+            getItem('contact@coinbasepro.tradegurultd.com', '4', <UserOutlined />)
         ]),
     ];
 
@@ -207,7 +206,7 @@ export const Home = () => {
                     </Row>
                 </Content>
 
-                <Footer>
+                <Footer className='hidden sm:block'>
                     coinbasepose copyright ©2023
                 </Footer>
             </Layout>

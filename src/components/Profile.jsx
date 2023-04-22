@@ -2,45 +2,40 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Inputelement } from '../components/Inputelement'
-import { DatePicker } from 'antd'
-import dayjs from 'dayjs';
-import Dropable from './Dropable'
+import { DatePicker, Button } from 'antd'
 
 //
 import { db, auth } from '../config/firebaseConfig'
-import { sendEmailVerification, updateEmail, updatePhoneNumber, updateProfile } from 'firebase/auth'
-import { updateDoc, doc, getDoc, onSnapshot, Timestamp } from 'firebase/firestore'
-import { getStorage, ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
+import { updateProfile } from 'firebase/auth'
+import { updateDoc, doc, onSnapshot, Timestamp } from 'firebase/firestore'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, } from "firebase/storage";
 import UseImage from './UseImage'
 
-
-// import { uuid } from 'uuidv4';
-
-// import { SignnedOut } from '../firebase/firebaseConfig'
-
-// import { AuthContext } from '../context/AuthContext'
 
 
 
 export const Profile = () => {
-    const [dob, setDOB] = useState()
-    const dateFormat = 'YYYY/MM/DD';
-    const onChange = (date, dateString) => {        // console.log(dateString);
-        setDOB(date)
+
+
+    const [newDob, setNewDOB] = useState()
+    const dateFormat = 'DD/MM/YYYY';
+    const onChange = (date, dateString) => {
+        setNewDOB(dateString)
     };
 
     const [edit, setEdit] = useState(true)
-
 
     // textinput state
     const [Name, setFullName] = useState("")
     const [Email, setEmail] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
+    const [dob, setDOB] = useState()
 
     const [bankName, setbankName] = useState("")
     const [accountNumber, setAccountNumber] = useState("")
     const [accountName, setAccountName] = useState("")
     const [swiftCode, setSwiftCode] = useState("")
+
 
     const [licenceUrl, setLicenceUrl] = useState("")
     const [passporteUrl, setPassporteUrl] = useState("")
@@ -105,50 +100,62 @@ export const Profile = () => {
 
     // upload image to cloud 
 
-    const handleImagesSubmit = async () => {
+    const [isLoading, setIsloading] = useState(false)
 
-        if (!passport && !licence && !licenceBack) {
-            // setUploadError(true)
+    const handleImagesSubmit = async (e) => {
+        e.preventDefault()
+        setIsloading(true)
 
-            return
-        }
-        //   setUploadError(false)
         const userRef = doc(db, "users", auth.currentUser?.uid)
-        const getPassport = passport[0].originFileObj
-        const getLicence = licence[0].originFileObj
-        const getLicenceBack = licenceBack[0].originFileObj
 
-        console.log(getLicence, getPassport, getLicenceBack)
-        console.log(licence, passport, licenceBack)
+
+        // console.log(licence, passport, licenceBack)
 
 
         try {
 
-            // passport
-            const passportfile = `${auth?.currentUser?.displayName}-${"passport"}`
-            const reference = ref(getStorage(), passportfile)
-            await uploadBytesResumable(reference, getPassport)
-            const downloadURL = await getDownloadURL(reference);
-            await updateDoc(userRef, { passport: downloadURL })
+            if (passport) {
+                // passport
+
+                const getPassport = passport[0]?.originFileObj
+                const passportfile = `${auth?.currentUser?.displayName}-${"passport"}`
+                const reference = ref(getStorage(), passportfile)
+                await uploadBytesResumable(reference, getPassport)
+                const downloadURL = await getDownloadURL(reference);
+                await updateDoc(userRef, { passport: downloadURL })
+
+            }
 
 
-            // // licence
-            const passportfileL = `${auth?.currentUser?.displayName}-${"licence"}`
-            const referenceL = ref(getStorage(), passportfileL)
-            await uploadBytesResumable(referenceL, getLicence)
-            const downloadURLL = await getDownloadURL(referenceL);
-            await updateDoc(userRef, { licence: downloadURLL })
+            if (licence) {
+                // // licence
+
+                const getLicence = licence[0]?.originFileObj
+                const passportfileL = `${auth?.currentUser?.displayName}-${"licence"}`
+                const referenceL = ref(getStorage(), passportfileL)
+                await uploadBytesResumable(referenceL, getLicence)
+                const downloadURLL = await getDownloadURL(referenceL);
+                await updateDoc(userRef, { licence: downloadURLL })
+
+            }
 
 
-            // // licenceBack
+            if (licenceBack) {
+                // // licenceBack
 
-            const passportfileLB = `${auth.currentUser?.displayName}-${"licenceBack"}`
-            const referenceLB = ref(getStorage(), passportfileLB)
-            await uploadBytesResumable(referenceLB, getLicenceBack)
-            const downloadURLLB = await getDownloadURL(referenceLB);
-            await updateDoc(userRef, { licenceBack: downloadURLLB })
+                const getLicenceBack = licenceBack[0]?.originFileObj
+                const passportfileLB = `${auth.currentUser?.displayName}-${"licenceBack"}`
+                const referenceLB = ref(getStorage(), passportfileLB)
+                await uploadBytesResumable(referenceLB, getLicenceBack)
+                const downloadURLLB = await getDownloadURL(referenceLB);
+                await updateDoc(userRef, { licenceBack: downloadURLLB })
+
+            }
+
+            setIsloading(false)
 
         } catch (e) {
+            setIsloading(false)
             console.log(e.message)
         }
 
@@ -159,9 +166,10 @@ export const Profile = () => {
 
 
 
-
+    const [isProfileLoading, setIsProfileLoading] = useState(false)
     const submitPress = async (data, e) => {
         e.preventDefault()
+        setIsProfileLoading(true)
 
 
         try {
@@ -176,13 +184,21 @@ export const Profile = () => {
             }
 
             await updateDoc(userRef, { bankName: data.Bank_Name, accountNumber: data.Account_Number, accountName: data.Account_Name, swiftCode: data.Swift_Code })
-            await updateDoc(userRef, { DOB: Timestamp(dob) })
+
+            await updateDoc(userRef, { DOB: Timestamp.fromDate(new Date(newDob)) })
+            setEdit(true)
+            setIsProfileLoading(false)
 
         } catch (error) {
+            setIsProfileLoading(false)
 
         }
 
     }
+
+
+
+
 
 
 
@@ -213,9 +229,9 @@ export const Profile = () => {
 
                 </div>
                 <div className="col-span-6">
-                    <p>Date of Birth {dob?.toString()}</p>
+                    <p d>Date of Birth: {dob?.toString()}</p>
 
-                    <DatePicker disabled={edit} onChange={onChange} className='w-full py-3' format={dateFormat} />
+                    <DatePicker disabled={edit} onChange={onChange} className='w-full py-3' />
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
@@ -244,20 +260,24 @@ export const Profile = () => {
 
                 </div>
 
-                <div className="col-span-6 sm:flex sm:items-center sm:gap-4 mb-5">
-                    <button
-                        disabled={edit}
-
+                {!edit && <div className="col-span-6 sm:flex sm:items-center sm:gap-4 mb-5">
+                    {!isProfileLoading ? <button
                         className="inline-block shrink-0 rounded-md border border-blue-950 bg-blue-950 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                     >
                         Save Changes
                     </button>
-                </div>
+
+                        :
+
+                        <Button size='large' className="inline-block shrink-0 rounded-md border border-blue-950 bg-blue-950 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring " loading>
+                            Loading
+                        </Button>}
+                </div>}
 
             </form>
 
 
-            <form className="flex flex-col gap-6 mt-5">
+            <form onSubmit={handleImagesSubmit} className="flex flex-col gap-6 mt-5">
 
                 <div>
                     <h2 className='text-blue-950 font-bold md:text-xl underline'>Account Verification</h2>
@@ -285,14 +305,20 @@ export const Profile = () => {
 
 
 
-                <div className="col-span-6 sm:flex sm:items-center sm:gap-4 mb-5">
+                {!isLoading ? <div className="col-span-6 sm:flex sm:items-center sm:gap-4 mb-5">
                     <button
-                        onClick={handleImagesSubmit}
+
                         className="inline-block shrink-0 rounded-md border border-blue-950 bg-blue-950 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                     >
                         Submit documents
                     </button>
                 </div>
+                    :
+                    <div className="col-span-6 sm:flex sm:items-center sm:gap-4 mb-5">
+                        <Button size='large' className="inline-block shrink-0 rounded-md border border-blue-950 bg-blue-950 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring " loading>
+                            Loading
+                        </Button>
+                    </div>}
             </form>
 
         </section>

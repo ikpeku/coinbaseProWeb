@@ -88,7 +88,7 @@ export const CoinBoard = ({ trigger }) => {
       title: 'Tether',
       amt: token?.USDT,
       img: "https://cryptologos.cc/logos/tether-usdt-logo.png?v=024",
-      address: "0x977be2b4dd4216fa4386a5d594676f3f5ba8b9d9"
+      address: "TUPqzJLsE1ge3AMgGrZpubLD2cWX2Xqgu1"
     },
 
   ]
