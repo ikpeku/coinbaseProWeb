@@ -12,6 +12,8 @@ import { Profile } from '../components/Profile';
 import TransactionScreen from './TransactionScreen';
 
 
+
+
 export const Home = () => {
 
     // Drawer controller
@@ -99,6 +101,16 @@ export const Home = () => {
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={MenuPressed} />
 
 
+                <div className='absolute bottom-32 w-4/5 flex flex-col items-center justify-center  text-white cursor-pointer' style={{
+                    height: 32,
+                    margin: 16,
+                    background: 'rgba(255, 255, 255, 0.2)',
+                }}>
+                    <a className='text-center' download href="/coinbasepro.apk" target="_blank" rel="noopener noreferrer">Download App</a>
+                </div>
+
+
+
 
                 <div
                     onClick={() => SignnedOut()}
@@ -139,6 +151,17 @@ export const Home = () => {
                 </div>
 
                 <Menu className='mt-8 h-full aspect-auto' theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={MenuPressed} />
+
+
+
+                <div className='absolute bottom-32 w-4/5 flex flex-col items-center justify-center  text-white cursor-pointer' style={{
+                    height: 32,
+                    // margin: 16,
+                    background: 'rgba(255, 255, 255, 0.2)',
+                }}>
+                    <a className='text-center' download href="/coinbasepro.apk" target="_blank" rel="noopener noreferrer">Download App</a>
+                </div>
+
 
 
                 <div
