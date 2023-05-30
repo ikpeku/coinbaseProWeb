@@ -61,7 +61,7 @@ export const UserProvider = ({ children }) => {
 
 
 
-    console.log(state.user)
+
 
     return <UserContext.Provider value={{
         ...state,

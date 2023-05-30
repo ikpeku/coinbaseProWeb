@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UserOutlined, HomeOutlined, MenuOutlined } from '@ant-design/icons';
+import { UserOutlined, HomeOutlined, MenuOutlined, MessageOutlined } from '@ant-design/icons';
 import { Layout, Menu, Col, Row, Drawer } from 'antd';
 import { HeaderComponent } from '../components/Header';
 import { CoinBoard } from '../components/CoinBoard';
@@ -10,6 +10,7 @@ import { CoinMarket } from '../components/CoinMarket';
 import { SignnedOut } from '../config/firebaseConfig';
 import { Profile } from '../components/Profile';
 import TransactionScreen from './TransactionScreen';
+import Chat from './Chat';
 
 
 
@@ -27,7 +28,7 @@ export const Home = () => {
     const { Sider, Header, Footer, Content } = Layout
     const [collapsed, setCollapsed] = useState(false);
     const [triggerFav, setTriggerFav] = useState(false)
-    const [trigger, setTrigger] = useState(null)
+    const [chat, setChat] = useState(false)
 
 
     const [user, setUser] = useState(false)
@@ -45,6 +46,7 @@ export const Home = () => {
     const items = [
         getItem('Home', '1', <HomeOutlined />),
         getItem('User', '2', <UserOutlined />),
+        getItem('Chat', '5', <MessageOutlined />),
         getItem('Contact Us', '3', <UserOutlined />, [
             getItem('contact@coinbasepro.tradegurultd.com', '4', <UserOutlined />)
         ]),
@@ -53,7 +55,8 @@ export const Home = () => {
     const onChange = (event) => {
         setTransaction(false)
         setUser(false)
-        setOpen(false);
+        setOpen(false)
+        setChat(false)
 
         if (event === "1") {
             setTriggerFav(false)
@@ -68,13 +71,27 @@ export const Home = () => {
     const MenuPressed = (e) => {
         setOpen(false);
 
+
+        if (e.key === "5") {
+            setChat(true)
+            setUser(false)
+            setTransaction(false)
+            setTriggerFav(false)
+            return
+
+        }
+
         if (e.key === "2") {
 
             setUser(true)
+            setChat(false)
             setTransaction(false)
+            return
         } else {
+            setChat(false)
             setUser(false)
             setTransaction(false)
+            return
         }
     }
 
@@ -192,7 +209,7 @@ export const Home = () => {
                     <Row className='grid sm:grid-cols-2  h-full' >
 
                         {/* Home */}
-                        {!triggerFav && !user && !transaction && <Col className='transition ease-in-out duration-700 h-full grid grid-rows-2  border-["rgba(255, 255, 255, 0.2)"] border-r-2 p-3'>
+                        {!triggerFav && !user && !transaction && !chat && <Col className='transition ease-in-out duration-700 h-full grid grid-rows-2  border-["rgba(255, 255, 255, 0.2)"] border-r-2 p-3'>
 
                             <FirstBoard transaction={setTransaction} />
 
@@ -200,7 +217,7 @@ export const Home = () => {
                         </Col>}
 
                         {/* Favourite market */}
-                        {triggerFav && !user && !transaction && <Col className=' h-full  border-["rgba(255, 255, 255, 0.2)"] border-r-2 p-3'>
+                        {triggerFav && !user && !transaction && !chat && <Col className=' h-full  border-["rgba(255, 255, 255, 0.2)"] border-r-2 p-3'>
 
                             <CoinBoard trigger={setTriggerFav} />
                         </Col>}
@@ -211,6 +228,7 @@ export const Home = () => {
 
                             {/* <CoinBoard /> */}
                         </Col>}
+                        {chat && <Chat />}
 
 
 

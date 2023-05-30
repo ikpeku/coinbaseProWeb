@@ -18,7 +18,7 @@ export const Profile = () => {
 
 
     const [newDob, setNewDOB] = useState()
-    const dateFormat = 'DD/MM/YYYY';
+
     const onChange = (date, dateString) => {
         setNewDOB(dateString)
     };
@@ -156,7 +156,7 @@ export const Profile = () => {
 
         } catch (e) {
             setIsloading(false)
-            console.log(e.message)
+
         }
 
     }
