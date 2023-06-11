@@ -105,7 +105,7 @@ export const CoinBoard = ({ trigger }) => {
               <Avatar size="small" icon={<img src={item.img} alt="coin" />} />
               <span>{item.title}</span>
             </div>
-            <span className='ml-auto'>{item.amt} {item.id}</span>
+            <span className='ml-auto'>{item.amt?.toLocaleString()} {item.id}</span>
           </div>
         ))}
       </div>

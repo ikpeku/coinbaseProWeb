@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useMemo } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { Button, Space, Spin } from 'antd';
@@ -10,6 +10,8 @@ export const FirstBoard = ({ transaction }) => {
     const [balance, setBalance] = useState("00:00")
     const [coin, setCoin] = useState("BTC")
     const [isLoading, setIsLoading] = useState(false)
+    const [localeBalance, setLocaleBalance] = useState("00:00")
+
 
     const { dispatch } = useContext(UserContext)
 
@@ -22,6 +24,8 @@ export const FirstBoard = ({ transaction }) => {
                 const { amount, name } = snapshot.data()?.selectedCoin
                 setBalance(amount)
                 setCoin(name)
+
+
             }
         })
         setIsLoading(false)
@@ -41,11 +45,24 @@ export const FirstBoard = ({ transaction }) => {
     }
 
 
+    useMemo(() => {
+
+        if (balance !== "00:00") {
+            setLocaleBalance(balance.toLocaleString())
+        }
+
+
+    }, [balance])
+
+
+
+
+
     return (
         <div className='flex flex-col flex-1  items-center justify-center relative'>
 
             {!isLoading && <>
-                <h2 className='font-bold text-4xl text-blue-950'>${balance === 0 ? "00:00" : `${balance}`}</h2>
+                <h2 className='font-bold text-4xl text-blue-950'>${balance === 0 ? "00:00" : `${localeBalance}`}</h2>
                 <p className='my-3'>{coin}</p>
             </>
             }

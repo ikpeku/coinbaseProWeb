@@ -16,7 +16,7 @@ export const Deposit_Withdrawal = ({ history }) => {
                     <div>
                         <h3 className='capitalize'>{type} </h3>
                         <div className='flex items-center'>
-                            {type === "deposit" ? <ArrowUpOutlined className='text-green-800 mr-3' /> : <ArrowDownOutlined className='text-red-800 mr-3' />}<span >${name} </span><span className={type === "deposit" ? 'text-green-800 ml-1' : 'text-red-800 ml-1'}>${amount}</span>
+                            {type === "deposit" ? <ArrowUpOutlined className='text-green-800 mr-3' /> : <ArrowDownOutlined className='text-red-800 mr-3' />}<span >${name} </span><span className={type === "deposit" ? 'text-green-800 ml-1' : 'text-red-800 ml-1'}>${amount?.toLocaleString()}</span>
                         </div>
                     </div>
                 </div>
