@@ -1,5 +1,4 @@
 import React from 'react'
-import { Avatar } from 'antd';
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import moment from 'moment';
 

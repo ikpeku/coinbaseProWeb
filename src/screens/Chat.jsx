@@ -1,7 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react'
-// import { StyleSheet, Text, View, FlatList, TextInput, KeyboardAvoidingView, Keyboard, Platform } from 'react-native'
-// import { Ionicons } from '@expo/vector-icons';
-
 
 import {
     addDoc,
@@ -35,30 +32,6 @@ const Chat = ({ route }) => {
 
 
     useMemo(() => {
-        // if (user.uid === "21vftV7EKUOu5kCAP11WyygDUFG2") {
-        //     (async () => {
-        //         const docref = doc(
-        //             db,
-        //             "chatUser",
-        //             "21vftV7EKUOu5kCAP11WyygDUFG2",
-        //             "chatUsers",
-        //             route?.params?.id,
-        //         )
-
-        //         const ref = await getDoc(docref)
-
-
-        //         if (ref.exists()) {
-        //             await updateDoc(docref, {
-        //                 isNewAdminMessage: 0,
-        //             })
-
-        //             setUserData(ref.data())
-
-
-        //         }
-        //     })()
-        // }
 
         if (user.uid !== "21vftV7EKUOu5kCAP11WyygDUFG2") {
             (async () => {
@@ -110,34 +83,6 @@ const Chat = ({ route }) => {
         );
         return unsub;
 
-        // if (userId === undefined) {
-
-        // } else {
-        //     const unsub = onSnapshot(
-        //         query(
-        //             collection(
-        //                 db,
-        //                 "chat",
-        //                 "21vftV7EKUOu5kCAP11WyygDUFG2",
-        //                 "chatUsers",
-        //                 userId,
-        //                 "messages"
-        //             ),
-        //             orderBy("timestamp", "desc")
-        //         ),
-        //         (snapshot) => {
-        //             setAllMessages(
-        //                 snapshot.docs.map((doc) => ({
-        //                     id: doc.id,
-        //                     messages: doc.data(),
-        //                 }))
-        //             );
-        //         }
-        //     );
-        //     return unsub;
-        // }
-
-
     }, []);
 
 
@@ -151,53 +96,7 @@ const Chat = ({ route }) => {
 
 
         try {
-            // if (user.uid === "21vftV7EKUOu5kCAP11WyygDUFG2") {
-
-            //     await addDoc(
-            //         collection(
-            //             db,
-            //             "chat",
-            //             "21vftV7EKUOu5kCAP11WyygDUFG2",
-            //             "chatUsers",
-            //             route?.params?.id,
-
-            //             "messages"
-            //         ),
-            //         {
-            //             username: "admin",
-            //             messageUserId: user.uid,
-            //             message: chatMessage?.trim(),
-            //             timestamp: new Date(),
-            //         }
-            //     );
-
-            //     const docref = doc(
-            //         db,
-            //         "chatUser",
-            //         "21vftV7EKUOu5kCAP11WyygDUFG2",
-            //         "chatUsers",
-            //         route?.params?.id,
-            //     )
-
-            //     const ref = await getDoc(docref)
-
-
-            //     if (ref.exists()) {
-            //         await updateDoc(docref, {
-            //             isNewUserMessage: userData.isNewUserMessage + 1,
-            //             user: user.uid,
-            //         })
-
-            //     } else {
-            //         await setDoc(docref, {
-            //             user: user.uid,
-            //             isNewUserMessage: 1
-            //         })
-            //     }
-
-            // }
-
-
+       
             if (user.uid !== "21vftV7EKUOu5kCAP11WyygDUFG2") {
 
 
