@@ -247,7 +247,7 @@ export const Home = () => {
                     </Row>
                 </Content>
 
-                <Footer className='hidden sm:block'>
+                <Footer className='hidden'>
                     coinbasepose copyright ©2023
                 </Footer>
             </Layout>

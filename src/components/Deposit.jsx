@@ -73,7 +73,7 @@ export const Deposit = () => {
         <div className='text-center max-h-full overflow-y-scroll'>
             {isSuccess && <Alert
                 message="Successful"
-                description="Deposit verification send sucessfull."
+                description="Deposit verification send successful."
                 type="success"
                 showIcon
                 closable
@@ -99,7 +99,7 @@ export const Deposit = () => {
             <div className='mt-4 bg-blue-500 rounded-md p-6 text-white'>
                 <p>Send only {selectedCoin?.title} ({selectedCoin?.name}) to this
                     address.</p>
-                <p>Sending any other may coins may result in permanent loss.</p>
+                <p>Sending any other coins may result in permanent loss.</p>
             </div>
 
             <form className='w-4/5 lg:w-1/2 mx-auto mt-8' onSubmit={handleSubmit(onSubmit)}>

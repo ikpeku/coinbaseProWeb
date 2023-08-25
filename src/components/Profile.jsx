@@ -315,7 +315,7 @@ export const Profile = () => {
                 </div>
                     :
                     <div className="col-span-6 sm:flex sm:items-center sm:gap-4 mb-5">
-                        <Button size='large' className="inline-block shrink-0 rounded-md border border-blue-950 bg-blue-950 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring " loading>
+                        <Button size='large' className="inline-block shrink-0 rounded-md border border-blue-950 bg-blue-950 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring ">
                             Loading
                         </Button>
                     </div>}

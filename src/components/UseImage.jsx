@@ -61,7 +61,7 @@ const FileUpload = ({ fileList, setFileList, photoUrl }) => {
     };
 
     useEffect(() => {
-        console.log(fileList)
+        // console.log(fileList)
         if (fileList?.length === 0 || !fileList) {
             setSubmitting(false)
         }
