@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       {isSuccess && (
-        <div >
+        <div>
           <Routes>
             <Route path="/" element={user ? <Home /> : <Navigate to="/login" replace />} />
             <Route path="login" element={!user ? <LoginScreen /> : <Navigate to="/" replace />} />

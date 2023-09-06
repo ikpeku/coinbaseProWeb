@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Upload } from 'antd';
+import { Upload, Image } from 'antd';
 import { uuidv4 } from '@firebase/util';
 
 import {
@@ -288,7 +288,11 @@ const Chat = ({ route }) => {
 
                 {item?.messages?.photo && <div className={item?.messages?.messageUserId === "21vftV7EKUOu5kCAP11WyygDUFG2" ? `bg-[#3376bc] ml-auto max-w-fit rounded-md p-2 my-2 mx-3 overflow-auto` : `bg-[lightgrey] mr-auto max-w-fit rounded-md p-2 my-2 mx-3 overflow-auto`}>
                     {/* <p className={!item?.messages?.messageUserId === "21vftV7EKUOu5kCAP11WyygDUFG2" ? "text-black" : "text-white" + "text-lg"}>{item?.messages?.message}</p> */}
-                    <img src={item?.messages?.photo} alt="avatar" className='w-full aspect-square' />
+                    <Image src={item?.messages?.photo} alt="avatar"
+                        width={200}
+
+                    // className='w-full aspect-square' 
+                    />
 
                     <p className={item?.messages?.messageUserId === "21vftV7EKUOu5kCAP11WyygDUFG2" ? "text-[lightgray] text-sm italic text-right" : "text-black text-sm italic text-right"}>{moment(time).fromNow()}</p>
                 </div >}

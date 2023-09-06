@@ -85,7 +85,7 @@ export const Withdraw = () => {
         <div className='flex flex-col gap-3 mt-8'>
            { isSuccess &&  <Alert
             message="Successful"
-            description="Withdrawal request sucessfull."
+            description="Withdrawal request successful."
             type="success"
             showIcon
             closable

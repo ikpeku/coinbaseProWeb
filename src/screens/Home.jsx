@@ -99,7 +99,7 @@ export const Home = () => {
 
 
     return (
-        <Layout className="flex-1 w-full max-h-screen min-h-screen ">
+        <Layout className="flex-1 w-full max-h-screen min-h-screen">
             <Sider trigger={null}
                 width={200}
                 // breakpoint='sm'
