@@ -10,7 +10,7 @@ export const useRegister = () => {
 
     const CreateWithEmail = async (email, password, fullName, date) => {
 
-        console.log("enter", email, password, fullName, date)
+        // console.log("enter", email, password, fullName, date)
         setError(null)
         setIsLoading(true)
         if (!password && !email && !fullName && !date) return

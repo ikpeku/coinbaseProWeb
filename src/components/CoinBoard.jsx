@@ -59,21 +59,21 @@ export const CoinBoard = ({ trigger }) => {
       title: 'Bitcoin',
       amt: token?.BTC,
       img: "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=024",
-      address: "1GKpL6QtazVRdBTPeqeFqpZYif6a6Jfsku"
+      address: "bc1qne2yz92a6k8rl3h0fa2jel4tqes4ktrjywg27w"
     },
     {
       id: 'ETH',
       title: 'Ethereum',
       amt: token?.ETH,
       img: "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=024",
-      address: "0x977be2b4dd4216fa4386a5d594676f3f5ba8b9d9"
+      address: "0x79b58bf3fad4125d89a5eE8d44bc4f0D5564E895"
     },
     {
       id: 'LTC',
       title: 'Litecoin',
       amt: token?.LTC,
       img: "https://cryptologos.cc/logos/litecoin-ltc-logo.png?v=024",
-      address: "LWPGCyu2oc7VV33X3zmth7XfNyzqk4dTBN"
+      address: "ltc1qkedq3frue9l8tnk9z45yht2f8awkpgf3gfv4j3"
     },
 
     {
@@ -81,17 +81,19 @@ export const CoinBoard = ({ trigger }) => {
       title: 'BNB Smart Chain',
       amt: token?.BNB,
       img: "https://cryptologos.cc/logos/bnb-bnb-logo.png?v=024",
-      address: "LWPGCyu2oc7VV33X3zmth7XfNyzqk4dTBN"
+      address: "bnb1ugk7u4pja8xgu2vs5jwt5md2tnwntyk80gu0tt"
+
     },
     {
       id: 'USDT',
       title: 'Tether',
       amt: token?.USDT,
       img: "https://cryptologos.cc/logos/tether-usdt-logo.png?v=024",
-      address: "TUPqzJLsE1ge3AMgGrZpubLD2cWX2Xqgu1"
+      address: "TQgfRHn5HG2fwVhpa4yR4BwRRMMV7Wi7Aa"
     },
 
   ]
+
 
 
   return (
